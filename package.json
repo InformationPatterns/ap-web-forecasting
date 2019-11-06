@@ -3,14 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "3.0.0",
+    "antd": "^3.25.0",
+    "apollo-boost": "^0.4.4",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link-http": "^1.5.15",
+    "babel-plugin-import": "^1.12.2",
+    "customize-cra": "^0.8.0",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
+    "hookrouter": "^1.2.3",
     "react": "^16.11.0",
+    "react-app-rewired": "^2.1.4",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "sha256": "^0.2.0",
+    "unstated-next": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
