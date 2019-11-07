@@ -40,7 +40,7 @@ function useAppState() {
     }).catch(e => {
       console.warn(e);
     })
-  }, []) // eslint-disable-next-line
+  }, [])
 
 
   const setGroupId = (group) => {

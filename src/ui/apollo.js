@@ -1,24 +1,23 @@
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import ApolloClient from 'apollo-boost'
 
-// import { resolvers, typeDefs } from './resolvers';
+/*global process*/
+let uri = "http://localhost:4000"
+if (process.env.REACT_APP_NODE_ENV === "production") uri = "http://167.71.170.147:4000/"
+else if (process.env.REACT_APP_NODE_ENV === "staging") uri = "http://167.71.170.147:4000/"
+const clientName = process.env.REACT_APP_NODE_ENV+'-ap-forcasting'
 
-const cache = new InMemoryCache();
 const client = new ApolloClient({
-  cache,
-  link: new HttpLink({
-    uri: 'http://167.71.170.147:4000/',
-    headers: {
-      authorizationid: localStorage.getItem('authorizationid'),
-      authorizationhex: localStorage.getItem('authorizationhex'),
-      groupid: localStorage.getItem('groupid'),
-      'client-name': 'AP-Forcasting',
-      'client-version': '1.0.0',
-    },
-  }),
-  // resolvers,
-  // typeDefs,
-});
+  uri,
+  request: operation =>
+    operation.setContext(() => ({
+      headers: {
+        authorizationid: localStorage.getItem('authorizationid'),
+        authorizationhex: localStorage.getItem('authorizationhex'),
+        groupid: localStorage.getItem('groupid'),
+        'client-name': clientName,
+        'client-version': '1.0.0'
+      }
+    }))
+})
 
 export default client;

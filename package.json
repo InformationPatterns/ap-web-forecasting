@@ -1,5 +1,5 @@
 {
-  "name": "ap-forecasting-server2",
+  "name": "ap-forecasting-server",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "apollo-client": "^2.6.3",
     "apollo-link-http": "^1.5.15",
     "babel-plugin-import": "^1.12.2",
+    "cross-env": "^6.0.3",
     "customize-cra": "^0.8.0",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
@@ -23,8 +24,10 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "eject": "react-scripts eject"
+    "start-staging": "REACT_APP_NODE_ENV=staging react-app-rewired start",
+    "start-production": "REACT_APP_NODE_ENV=production react-app-rewired start",
+    "deploy-staging": "REACT_APP_NODE_ENV=staging build && aws s3 sync build/ s3://staging-forcasting-agropatterns-com",
+    "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forcasting-agropatterns-com"
   },
   "eslintConfig": {
     "extends": "react-app"
