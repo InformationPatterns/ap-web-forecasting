@@ -6,5 +6,11 @@
   "Block": "Block",
   "Bar": "Bar",
   "Lot": "Lot",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "Login": "Login",
+  "Email": "Email",
+  "Password": "Password",
+  "_wrong_email_": "Wrong Email",
+  "_wrong_password_": "Wrong Password",
+  "_permission_denied_": "Something went wrong, please contact Agropattern's Support!"
 }

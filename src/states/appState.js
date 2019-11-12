@@ -48,29 +48,26 @@ function useAppState() {
     _setGroupId(group.id)
     setGroup(group)
   }
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     let passhex = sha256(password);
-    setLoading(true);
-    client.mutate(
-      {mutation: gql`
+    let {data: {login: {error, user}}} = await client.mutate({mutation: gql`
       mutation login($email: String!, $passhex: String!) {
         login(email: $email, passhex:$passhex) {
-          id
-          language
+          error
+          user {
+            id
+            language
+          }
         }
       }
-      `, variables: {email, passhex}}).then(({data: {login}}) => {
-      if (login) {
-        localStorage.setItem("authorizationid", login.id)
-        localStorage.setItem("authorizationhex", passhex)
-        setLanguage(login.language)
-        setUserId(login.id)
-      }
-      setLoading(false)
-    }).catch((e) => {
-      console.warn(e);
-      setLoading(false)
-    })
+    `, variables: {email, passhex}})
+    if (error) return error
+    if (user) {
+      localStorage.setItem("authorizationid", user.id)
+      localStorage.setItem("authorizationhex", passhex)
+      setLanguage(user.language)
+      setUserId(user.id)
+    }
   }
   const signOut = () => {
     setLoading(true)
@@ -98,12 +95,20 @@ function useAppState() {
      });
      return str;
   }
+  const td = (string) => {
+    if (useAppState.translations) {
+      if (!useAppState.translations[string]) {
+        console.warn(`Missing T9n (${language}): ${string}`);
+        return string
+      } else return useAppState.translations[string]
+    }
+  }
 
   return {
     actions: {signIn, signOut, setGroupId}
     ,loading, setLoading
     , groupId, group
-    , userId, moment, language, t
+    , userId, moment, language, t, td
   }
 }
 useAppState.translationFiles = {

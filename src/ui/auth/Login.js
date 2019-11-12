@@ -3,21 +3,29 @@ import { Form, Icon, Input, Button } from 'antd';
 import AppState from '../../states/appState'
 
 export default function Login() {
-  const {actions: {signIn}} = AppState.useContainer()
+  const {actions: {signIn}, t, td} = AppState.useContainer()
   , [email, setEmail] = useState('')
   , [password, setPassword] = useState('')
+  , [error, setError] = useState('')
+  , [loading, setLoading] = useState('')
   return (
     <div style={{flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <Form style={{width: 300}} onSubmit={e => {
           e.preventDefault();
-          if (email && password) signIn(email, password)
+          setLoading(true)
+          if (email && password) signIn(email, password).then(e => {
+            if (e) { //if no error this component will be removed
+              setError(e)
+              setLoading(false)
+            }
+          })
         }} className="login-form">
         <Form.Item>
           <Input
             value={email}
             onChange={e => setEmail(e.target.value)}
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Email"
+            placeholder={t`Email`}
           />
         </Form.Item>
         <Form.Item>
@@ -26,12 +34,13 @@ export default function Login() {
             onChange={e => setPassword(e.target.value)}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
-            placeholder="Password"
+            placeholder={t`Password`}
           />
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" style={{width: "100%"}}>
-            Log in
+        <Form.Item help={error ? td(error) : ''} validateStatus={error ? 'error' : ''}>
+          <Button disabled={loading || !email || !password}
+            type="primary" htmlType="submit" style={{width: "100%"}}>
+            {t`Login`}
           </Button>
         </Form.Item>
       </Form>

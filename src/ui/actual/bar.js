@@ -33,7 +33,6 @@ export default function ActualBlock() {
     setCrops(_crops)
     if (_crops[0]) setCrop(_crops[0].value)
   }, [data])
-
   if (data) schema = getReportType(cropDisplay, crop, data)
 
   return (
@@ -65,9 +64,25 @@ function getReportType(cropDisplay, crop,  data) {
 
 const REPORT_TYPE = {
   cropsByWeekAnchor(data) {
+    let min = Infinity, max = 0, inRange = [];
+    data.forEach(row => {
+      if (!row.crop) return
+      if (row.anchor_week_year < min) min = row.anchor_week_year
+      if (row.anchor_week_year > max) max = row.anchor_week_year
+      if (!inRange.includes(row.anchor_week_year)) inRange.push(row.anchor_week_year)
+    })
+    let values = [...data]
+    , range = Array.from({length: max-min+1}, (v, k) => k+min)
+    range.forEach(r => {
+      if (!inRange.includes(r)) {
+        values.push({
+          anchor_week_year: r
+        })
+      }
+    })
     return {
      mark: "bar",
-      data: {values: data},
+      data: {values},
       transform: [
         {"calculate": "datum.lot_display || 'n/a'", "as": "lot_display2"}
         , {"calculate": "datum.lot_day || 'n/a'", "as": "lot_day2"}
@@ -81,11 +96,15 @@ const REPORT_TYPE = {
           , legend: { orient: 'bottom', title: "Day" }
         },
         x: {
-          field: "anchor_week2"
-          , type: "quantitative"
+          field: "anchor_week_year"
+          , type: "nominal"
           , title: "Week"
-          , "scale": { "nice": 1 }
-          , axis: { labelAngle: -90 }
+          , "scale": {"nice": 1}
+          , axis: {
+            labelAngle: -90 ,
+            values: range,
+            "labelExpr": "substring(datum.value, 0, 4)+' - '+substring(datum.value, 4, 6)"
+          }
         },
         y: {
           type: "quantitative"
@@ -143,9 +162,26 @@ const REPORT_TYPE = {
     }
   },
   cropsByWeekHarvest(data) {
+
+      let min = Infinity, max = 0, inRange = [];
+      data.forEach(row => {
+        if (!row.crop) return
+        if (row.estimated_harvest_week_year < min) min = row.estimated_harvest_week_year
+        if (row.estimated_harvest_week_year > max) max = row.estimated_harvest_week_year
+        if (!inRange.includes(row.estimated_harvest_week_year)) inRange.push(row.estimated_harvest_week_year)
+      })
+      let values = [...data]
+      , range = Array.from({length: max-min+1}, (v, k) => k+min)
+      range.forEach(r => {
+        if (!inRange.includes(r)) {
+          values.push({
+            estimated_harvest_week_year: r
+          })
+        }
+      })
     return {
      mark: "bar",
-      data: {values: data},
+      data: {values},
       transform: [
         {"calculate": "datum.lot_display || 'n/a'", "as": "lot_display2"}
         , {"calculate": "datum.lot_day || 'n/a'", "as": "lot_day2"}
@@ -159,11 +195,15 @@ const REPORT_TYPE = {
           , legend: { orient: 'bottom', title: "Day" }
         },
         x: {
-          field: "harvest_week"
-          , type: "quantitative"
+          field: "estimated_harvest_week_year"
+          , type: "nominal"
           , title: "Week"
-          , "scale": { "nice": 1 }
-          , axis: { labelAngle: -90 }
+          , "scale": {"nice": 1}
+          , axis: {
+            labelAngle: -90 ,
+            values: range,
+            "labelExpr": "substring(datum.value, 0, 4)+' - '+substring(datum.value, 4, 6)"
+          }
         },
         y: {
           type: "quantitative"

@@ -8,15 +8,23 @@ export default function useActualBlock(block) {
   let finalData = useMemo(() => {
     if (!data) return
     return data.locations.map((crop) => {
-      if (!crop.cropId) return { location: crop.location }
+      if (!crop.cropId) return {
+        location: crop.location,
+        anchor_week_year: 0,
+        estimated_harvest_week_year: 0
+      }
       let anchorDate = moment(crop.anchorDate.calendar, "YYYY-MM-DD")
       return {
         location: crop.location,
         crop: `${crop.crop} - ${crop.variety}`,
         anchor_calendar: crop.anchorDate.calendar,
+        anchor_week_year: crop.anchorDate.year * 100 + crop.anchorDate.week,
+        anchor_year: crop.anchorDate.year,
         anchor_week: crop.anchorDate.week,
         anchor_day: crop.anchorDate.day,
         estimated_harvest_calendar: crop.estimatedHarvestDate.calendar,
+        estimated_harvest_week_year: crop.estimatedHarvestDate.year * 100 + crop.estimatedHarvestDate.week,
+        estimated_harvest_year: crop.estimatedHarvestDate.year,
         estimated_harvest_week: crop.estimatedHarvestDate.week,
         estimated_harvest_day: crop.estimatedHarvestDate.day,
         age_days: moment().diff(anchorDate, 'days') + 1,
