@@ -26,8 +26,8 @@
     "start": "react-app-rewired start",
     "start-staging": "REACT_APP_NODE_ENV=staging react-app-rewired start",
     "start-production": "REACT_APP_NODE_ENV=production react-app-rewired start",
-    "deploy-staging": "REACT_APP_NODE_ENV=staging build && aws s3 sync build/ s3://staging-forcasting-agropatterns-com",
-    "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forcasting-agropatterns-com"
+    "deploy-staging": "REACT_APP_NODE_ENV=staging react-app-rewired build && aws s3 sync build/ s3://forecasting-staging-agropatterns-com",
+    "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forecasting-agropatterns-com"
   },
   "eslintConfig": {
     "extends": "react-app"

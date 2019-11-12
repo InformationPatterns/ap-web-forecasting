@@ -1,9 +1,9 @@
 import ApolloClient from 'apollo-boost'
 
 /*global process*/
-let uri = "http://localhost:4000"
-if (process.env.REACT_APP_NODE_ENV === "production") uri = "http://167.71.170.147:4000/"
-else if (process.env.REACT_APP_NODE_ENV === "staging") uri = "http://167.71.170.147:4000/"
+let uri = "http://localhost:4000/graphql"
+if (process.env.REACT_APP_NODE_ENV === "production") uri = "https://apollo.agropatterns.com/graphql"
+else if (process.env.REACT_APP_NODE_ENV === "staging") uri = "https://apollo-staging.agropatterns.com/graphql"
 const clientName = process.env.REACT_APP_NODE_ENV+'-ap-forcasting'
 
 const client = new ApolloClient({
