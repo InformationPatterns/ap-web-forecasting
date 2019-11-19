@@ -6,7 +6,7 @@ export default function useGreenhouse(name) {
     variables: {name},
     skip: !name
   })
-
+  console.log(data);
   return {loading, data: data.Greenhouse}
 }
 

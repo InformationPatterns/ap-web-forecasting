@@ -5,15 +5,15 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 export default function Groups() {
-  const {actions: {setGroupId, signOut}} = AppState.useContainer()
+  const {actions: {setGroupId, signOut}, t} = AppState.useContainer()
   , [hover, setHover] = useState()
   , { data = {}, loading } = useQuery(GET_GROUPS);
   return <List
     loading={loading}
     style={{ margin: '5vh 10vw', flex: 1}}
     header={<h1>
-      select group
-      <Button type='dashed' style={{float: 'right'}} onClick={signOut}>logout</Button>
+      {t`Select_Group`}
+      <Button type='dashed' style={{float: 'right'}} onClick={signOut}>{t`Logout`}</Button>
     </h1>}
     bordered
     dataSource={data.Groups}

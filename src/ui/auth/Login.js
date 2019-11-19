@@ -1,8 +1,15 @@
 import React, {useState} from 'react'
 import { Form, Icon, Input, Button } from 'antd';
 import AppState from '../../states/appState'
+import ResetPassword from './ResetPassword'
 
 export default function Login() {
+  const [reset, setReset] = useState(false)
+  if (reset) return <ResetPassword login={() => setReset(false)} />
+  return <_Login resetPassword={() => setReset(true)}/>
+}
+
+function _Login({resetPassword}) {
   const {actions: {signIn}, t, td} = AppState.useContainer()
   , [email, setEmail] = useState('')
   , [password, setPassword] = useState('')
@@ -42,6 +49,9 @@ export default function Login() {
             type="primary" htmlType="submit" style={{width: "100%"}}>
             {t`Login`}
           </Button>
+        </Form.Item>
+        <Form.Item>
+          <Button type="dashed" style={{width: "100%"}} onClick={resetPassword}>{t`Reset_Password`}</Button>
         </Form.Item>
       </Form>
     </div>

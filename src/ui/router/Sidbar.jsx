@@ -3,7 +3,7 @@ import { Menu, Layout } from 'antd';
 import {getWorkingPath} from 'hookrouter';
 import {A} from 'hookrouter';
 const { Sider } = Layout
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 import State from '../../states/appState'
 
 export default function Navbar() {
@@ -24,38 +24,6 @@ export default function Navbar() {
 }
 
 const ROUTES = {
-  estimates(t) {
-    return [
-      <Menu.Item key="/estimates/weeks">
-        <A href='/estimates/weeks'>{t`Week`}</A>
-      </Menu.Item>,
-      <Menu.Item key="/estimates/days">
-        <A href='/estimates/days'>{t`Days`}</A>
-      </Menu.Item>
-    ]
-  },
-  demand(t) {
-    return [
-      <Menu.Item key="/demand/table">
-        <A href='/demand/table'>{t`Table`}</A>
-      </Menu.Item>
-    ]
-  },
-  production(t) {
-    return [
-      <SubMenu key='/production/reports' title='Reports'>
-        <Menu.Item key="/production/reports/week">
-          <A href='/production/reports/week'>{t`Week`}</A>
-        </Menu.Item>,
-        <Menu.Item key="/production/reports/day">
-          <A href='/production/reports/day'>{t`Day`}</A>
-        </Menu.Item>
-      </SubMenu>,
-      <Menu.Item key="/production/edit">
-        <A href='/production/edit'>{t`Edit`}</A>
-      </Menu.Item>
-    ]
-  },
   actual(t) {
     return [
       <Menu.Item key="/actual/block">
@@ -67,6 +35,13 @@ const ROUTES = {
       <Menu.Item key="/actual/lot">
         <A href='/actual/lot'>{t`Lot`}</A>
       </Menu.Item>
+    ]
+  },
+  configuration(t) {
+    return [
+      <Menu.Item key="/configuration/users">
+        <A href='/configuration/users'>{t`Users`}</A>
+      </Menu.Item>,
     ]
   }
 }

@@ -61,7 +61,7 @@ function getReportType(cropDisplay, crop,  data) {
   if (cropDisplay == 'harvest-day') return REPORT_TYPE['cropsByDayHarvest'](schemaData)
   return
 }
-
+ // also see: function numberStript(num, fromRight) { return num % Math.pow(10,fromRight) }
 const REPORT_TYPE = {
   cropsByWeekAnchor(data) {
     let min = Infinity, max = 0, inRange = [];
