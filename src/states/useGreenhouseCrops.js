@@ -6,38 +6,38 @@ export default function useGreenhouseCrops(greenhouse) {
     variables: {greenhouse},
     skip: !greenhouse
   })
-  return {loading, data: data.GreenhouseCrops}
+  return {loading, data: data.GreenhouseVarieties}
 }
 
 const GET_BLOCK_CROPS = gql`
-  query GreenhouseCrops($greenhouse: String!) {
-    GreenhouseCrops(greenhouse: $greenhouse) {
+  query GreenhouseVarieties($greenhouse: String!) {
+    GreenhouseVarieties(greenhouse: $greenhouse) {
       id
-      block
+      greenhouse
       locations {
         location
-        cropId
-        crop
-        variety
+        varietyId
+        line
+        name
         anchorDate {
+          calendar
           year
           week
           day
-          calendar
         }
         estimatedHarvestDate {
+          calendar
           year
           week
           day
-          calendar
         }
         lot {
+          calendar
           year
           week
           day
-          calendar
         }
-        stages
+        events
       }
     }
   }

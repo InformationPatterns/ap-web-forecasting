@@ -7,7 +7,6 @@ import {DataSelectView, CenterView} from '../components/Views'
 import Select from '../components/Select'
 import SelectBlocks from '../components/SelectBlocks'
 
-
 export default function ActualBlock() {
   const {t} = State.useContainer()
   , [block, setBlock] = useState('')
@@ -28,7 +27,7 @@ export default function ActualBlock() {
     setCropDisplay('date')
   }, [block])
 
-  if (blockData && data) schema = getReportType(crop, cropDisplay, blockData, data, ALL_CROPS, t)
+  if (blockData) schema = getReportType(crop, cropDisplay, blockData, data, ALL_CROPS, t)
   if (data) {
     data.reduce((memo, {crop}) => {
       if (!crop) return memo
@@ -53,7 +52,7 @@ export default function ActualBlock() {
   )
 }
 
-function getReportType(crop, cropDisplay, block, data, ALL_CROPS, t) {
+function getReportType(crop, cropDisplay, block, data = [], ALL_CROPS, t) {
   if (crop == ALL_CROPS) return REPORT_TYPE['allCrops'](block, data, t)
   else {
     let schemaData = data.filter(({crop: c}) => c == crop)
@@ -92,6 +91,7 @@ const REPORT_TYPE = {
         color: { field: "crop2", type: "nominal", title: t`Crop` },
         "tooltip": [
           { "field": "properties.display_location", "type": "nominal", title: t`Location` },
+          { "field": "properties.location", "type": "nominal", title: t`System_Location` },
           { "field": "lot_display2", "type": "nominal", title: t`Lot` },
           { "field": "lot_day2", "type": "nominal", title: t`Sublot` }
         ]

@@ -5,10 +5,12 @@ import useGreenhouseCrops from '../../../states/useGreenhouseCrops'
 export default function useActualBlock(block) {
   const {moment} = State.useContainer()
   , {loading, data} = useGreenhouseCrops(block)
+  if (!loading) console.log(data, block);
   let finalData = useMemo(() => {
     if (!data) return
     return data.locations.map((crop) => {
-      if (!crop.cropId) return {
+      console.log(crop);
+      if (!crop.varietyId) return {
         location: crop.location,
         anchor_week_year: 0,
         estimated_harvest_week_year: 0
@@ -16,7 +18,7 @@ export default function useActualBlock(block) {
       let anchorDate = moment(crop.anchorDate.calendar, "YYYY-MM-DD")
       return {
         location: crop.location,
-        crop: `${crop.crop} - ${crop.variety}`,
+        crop: `${crop.line} - ${crop.name}`,
         anchor_calendar: crop.anchorDate.calendar,
         anchor_week_year: crop.anchorDate.year * 100 + crop.anchorDate.week,
         anchor_year: crop.anchorDate.year,
