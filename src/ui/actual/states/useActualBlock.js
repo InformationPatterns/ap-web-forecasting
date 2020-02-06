@@ -5,11 +5,9 @@ import useGreenhouseCrops from '../../../states/useGreenhouseCrops'
 export default function useActualBlock(block) {
   const {moment} = State.useContainer()
   , {loading, data} = useGreenhouseCrops(block)
-  if (!loading) console.log(data, block);
   let finalData = useMemo(() => {
     if (!data) return
     return data.locations.map((crop) => {
-      console.log(crop);
       if (!crop.varietyId) return {
         location: crop.location,
         anchor_week_year: 0,

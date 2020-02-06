@@ -6,14 +6,17 @@ import en from 'antd/lib/locale/en_US';
 import AppState from '../states/appState'
 import client from './apollo'
 import Router from './router'
+import { CookiesProvider } from 'react-cookie';
 
 export default function App() {
   return (
     <div className="App">
       <ApolloProvider client={client}>
-        <AppState.Provider>
-          <AppConfig />
-        </AppState.Provider>
+        <CookiesProvider>
+          <AppState.Provider>
+            <AppConfig />
+          </AppState.Provider>
+        </CookiesProvider>
       </ApolloProvider>
     </div>
   );

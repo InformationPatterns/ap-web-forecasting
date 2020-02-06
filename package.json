@@ -17,15 +17,17 @@
     "hookrouter": "^1.2.3",
     "react": "^16.11.0",
     "react-app-rewired": "^2.1.4",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
     "sha256": "^0.2.0",
+    "universal-cookie": "^4.0.3",
     "unstated-next": "^1.1.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "start-staging": "REACT_APP_NODE_ENV=staging react-app-rewired start",
-    "start-production": "REACT_APP_NODE_ENV=production react-app-rewired start",
+    "start-staging": "REACT_APP_NODE_ENV=staging REACT_APP_NODE_DEV=True react-app-rewired start",
+    "start-production": "REACT_APP_NODE_ENV=production REACT_APP_NODE_DEV=True react-app-rewired start",
     "deploy-staging": "REACT_APP_NODE_ENV=staging react-app-rewired build && aws s3 sync build/ s3://forecasting-staging-agropatterns-com",
     "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forecasting-agropatterns-com"
   },

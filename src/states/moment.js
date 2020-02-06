@@ -5,7 +5,7 @@ import 'moment/locale/es';
 moment.fn.getFarmTime = function() {
   return {
     calendar: this.format('YYYY-MM-DD'),
-    year: this.isoWeekYear(),
+    year: this.weekYear(),
     week: this.week(),
     day: this.weekday()+ 1
   }
