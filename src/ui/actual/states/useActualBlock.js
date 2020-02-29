@@ -14,6 +14,7 @@ export default function useActualBlock(block) {
         estimated_harvest_week_year: 0
       }
       let anchorDate = moment(crop.anchorDate.calendar, "YYYY-MM-DD")
+      , lot = crop.lot || {}
       return {
         location: crop.location,
         crop: `${crop.line} - ${crop.name}`,
@@ -29,8 +30,8 @@ export default function useActualBlock(block) {
         estimated_harvest_day: crop.estimatedHarvestDate.day,
         age_days: moment().diff(anchorDate, 'days') + 1,
         age_weeks: moment().diff(anchorDate, 'weeks') + 1,
-        lot_display: `${crop.lot.year} - ${crop.lot.week}`,
-        lot_day: crop.lot.day,
+        lot_display: `${lot.year} - ${lot.week}`,
+        lot_day: lot.day,
       }
     })
   }, [data])

@@ -13,13 +13,13 @@ import esT9n from './t9n/es.json'
 /*global process*/
 let COOKIE_OPTIONS, COOKIE_NAME = 'local';
 if (process.env.REACT_APP_NODE_DEV) {
-  COOKIE_OPTIONS = { path: '/' }
+  COOKIE_OPTIONS = { path: '/', expires: new Date('Tue, 19 Jan 2038 03:14:07 UTC') }
 } else if (process.env.REACT_APP_NODE_ENV === "production") {
   COOKIE_NAME = 'production'
-  COOKIE_OPTIONS = { path: '/' , domain: '.agropatterns.com' , secure: true }
+  COOKIE_OPTIONS = { path: '/' , domain: '.agropatterns.com' , secure: true, expires: new Date('Tue, 19 Jan 2038 03:14:07 UTC') }
 } else if (process.env.REACT_APP_NODE_ENV === "staging") {
   COOKIE_NAME = 'staging'
-  COOKIE_OPTIONS = { path: '/', domain: '.agropatterns.com', secure: true }
+  COOKIE_OPTIONS = { path: '/', domain: '.agropatterns.com', secure: true, expires: new Date('Tue, 19 Jan 2038 03:14:07 UTC') }
 }
 
 function useAppState() {
