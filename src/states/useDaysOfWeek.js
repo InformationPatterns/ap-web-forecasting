@@ -1,7 +1,7 @@
-import State from '/imports/states/appState'
+import {AppState} from 'ap-web-general'
 
 export default function useDaysOfWeek(year, week) {
-  const {moment} = State.useContainer()
+  const {moment} = AppState.useContainer()
   let date = moment()
   if (year) date.isoWeekYear(year)
   if (week) date.week(week)

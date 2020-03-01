@@ -2,11 +2,11 @@ import {useMemo} from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {FullProductionPlan} from '/imports/api/apollo/productionPlan/fragments'
-import State from '/imports/states/appState'
+import {AppState} from 'ap-web-general'
 
 export default function useProductionPlan(props) {
   const {lot, type} = props
-  , {moment} = State.useContainer()
+  , {moment} = AppState.useContainer()
   , { data: {Plan = []} = {}, loading } = useQuery(GET_PRODUCTION_PLAN, {
     variables: {lot, type},
     skip: !lot.year || !lot.week || !type

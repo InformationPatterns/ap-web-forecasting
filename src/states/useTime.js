@@ -1,7 +1,7 @@
-import State from '/imports/states/appState'
+import {AppState} from 'ap-web-general'
 
 export default function useTime(maxYears = 0) {
-  const {moment, group = {createdAt: (new Date()).getTime()}} = State.useContainer()
+  const {moment, group = {createdAt: (new Date()).getTime()}} = AppState.useContainer()
   const createdDate = moment(group.createdAt, "x")
   , createDateFarmTime = createdDate.getFarmTime()
   , endDate = moment().add(maxYears, "years")

@@ -2,10 +2,10 @@ import {useMemo} from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {FullSalesPlan} from '/imports/api/apollo/salesPlan/fragments'
-import State from '/imports/states/appState'
+import {AppState} from 'ap-web-general'
 
 export default function useSalesPlan(cropId, year, week) {
-  const {moment} = State.useContainer()
+  const {moment} = AppState.useContainer()
   const { loading, data = {Plan: {crops: []}} } = useQuery(GET_SALES_PLAN, {
     variables: {year, week},
     skip: !year || !week

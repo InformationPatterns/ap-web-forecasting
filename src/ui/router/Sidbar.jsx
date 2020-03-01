@@ -4,10 +4,10 @@ import {getWorkingPath} from 'hookrouter';
 import {A} from 'hookrouter';
 const { Sider } = Layout
 const { SubMenu } = Menu;
-import State from '../../states/appState'
+import {AppState} from 'ap-web-general'
 
 export default function Navbar() {
-  const {t} = State.useContainer()
+  const {t} = AppState.useContainer()
   , path = getWorkingPath().split('/')
   , parent = `/${path[1]}/${path[2]}`
   , child = `/${path[1]}/${path[2]}/${path[3]}`

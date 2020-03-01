@@ -2,11 +2,12 @@ import React from 'react'
 import { Menu } from 'antd'
 import {getWorkingPath} from 'hookrouter';
 import {A} from 'hookrouter';
-import AppState from '../../states/appState'
+import {AppState} from 'ap-web-general'
 
-export default function Navbar() {
+export default function Navbar({modules}) {
   const {actions: {signOut}, t} = AppState.useContainer()
   return <Menu onClick={({key}) => setRoute(key, signOut)}
+    style={{ lineHeight: '64px' }}
     selectedKeys={["/"+getWorkingPath().split('/')[1]]} mode="horizontal">
     <Menu.Item key="/estimates" disabled>
       {t`Estimates`}
@@ -26,6 +27,7 @@ export default function Navbar() {
     <Menu.Item key="signOut" style={{float: 'right'}}>
       {t`Logout`}
     </Menu.Item>
+    {modules('forecasting')}
   </Menu>
 }
 

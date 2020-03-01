@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "3.0.0",
-    "antd": "^3.25.0",
+    "antd": "^4.0.0",
+    "ap-web-general": "https://github.com/Sivli-Embir/ap-web-general",
     "apollo-boost": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
@@ -23,9 +24,9 @@
     "unstated-next": "^1.1.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "start-staging": "REACT_APP_NODE_ENV=staging react-app-rewired start",
-    "start-production": "REACT_APP_NODE_ENV=production react-app-rewired start",
+    "start": "REACT_APP_NODE_DEV=True react-app-rewired start",
+    "start-staging": "REACT_APP_NODE_ENV=staging REACT_APP_NODE_DEV=True react-app-rewired start",
+    "start-production": "REACT_APP_NODE_ENV=production REACT_APP_NODE_DEV=True react-app-rewired start",
     "deploy-staging": "REACT_APP_NODE_ENV=staging react-app-rewired build && aws s3 sync build/ s3://forecasting-staging-agropatterns-com",
     "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forecasting-agropatterns-com"
   },

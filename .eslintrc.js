@@ -26,5 +26,11 @@ module.exports = {
     "rules": {
       "react-hooks/rules-of-hooks": "error",
       "react/prop-types": 0
-    }
+    },
+    "settings": {
+      "react": {
+        "pragma": "React",  // Pragma to use, default to "React"
+        "version": "detect"
+      }
+  }
 };
