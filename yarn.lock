@@ -1802,9 +1802,9 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-"ap-web-general@https://github.com/Sivli-Embir/ap-web-general":
+"ap-web-general@https://github.com/InformationPatterns/ap-web-general":
   version "1.0.0"
-  resolved "https://github.com/Sivli-Embir/ap-web-general#1d1d216475e0d1c610fef773f6a528021c53b87a"
+  resolved "https://github.com/InformationPatterns/ap-web-general#1d1d216475e0d1c610fef773f6a528021c53b87a"
   dependencies:
     "@apollo/react-hooks" "3.0.0"
     antd "^4.0.0"
