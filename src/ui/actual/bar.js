@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import useActualBlock from './states/useActualBlock'
+import useActualGreenhouse from './states/useActualGreenhouse'
 import Vega from '../components/Vega'
 import {DataSelectView, CenterView} from '../components/Views'
 import Select from '../components/Select'
@@ -7,11 +7,11 @@ import SelectBlocks from '../components/SelectBlocks'
 
 
 export default function ActualBlock() {
-  const [block, setBlock] = useState('')
-  , [crop, setCrop] = useState('')
+  const [greenhouse, setGreenhouse] = useState('')
+  , [variety, setVariety] = useState('')
   , [crops, setCrops] = useState([])
   , [cropDisplay, setCropDisplay] = useState('anchor-week')
-  , {loading, data} = useActualBlock(block)
+  , {loading, data} = useActualGreenhouse(greenhouse)
   let schema, cropDisplays = [
     {value: "anchor-week", label: "Anchor Week"},
     {value: "anchor-day", label: "Anchor Day"},
@@ -21,39 +21,39 @@ export default function ActualBlock() {
 
   useEffect(() => {
     setCropDisplay('anchor-week')
-  }, [block])
+  }, [greenhouse])
 
   useEffect(() => {
-    let _crops = []
-    if (data) _crops = data.reduce((memo, {crop}) => {
-      if (!crop) return memo
-      if (!memo.includes(crop)) memo.push(crop)
+    let _varieties = []
+    if (data) _varieties = data.reduce((memo, {variety}) => {
+      if (!variety) return memo
+      if (!memo.includes(variety)) memo.push(variety)
       return memo
     }, []).map(value => ({value}))
-    setCrops(_crops)
-    if (_crops[0]) setCrop(_crops[0].value)
+    setCrops(_varieties)
+    if (_varieties[0]) setVariety(_varieties[0].value)
   }, [data])
-  if (data) schema = getReportType(cropDisplay, crop, data)
+  if (data) schema = getReportType(cropDisplay, variety, data)
 
   return (
     <div style={{flex: 1}}>
       <DataSelectView>
-        <SelectBlocks value={block} onChange={setBlock} />
-        <Select data={crops} value={crop} onChange={setCrop}
+        <SelectBlocks value={greenhouse} onChange={setGreenhouse} />
+        <Select data={crops} value={variety} onChange={setVariety}
           style={{marginLeft: 10, width: 260}}/>
         <Select data={cropDisplays} value={cropDisplay} onChange={setCropDisplay}
           style={{marginLeft: 10, width: 200}}/>
       </DataSelectView>
       <CenterView>
-        <Vega schema={schema} loading={loading || !block}/>
+        <Vega schema={schema} loading={loading || !greenhouse}/>
       </CenterView>
     </div>
   )
 }
 
-function getReportType(cropDisplay, crop,  data) {
-  if (!crop || !data) return
-  const schemaData = data.filter(({crop: c}) => c == crop)
+function getReportType(cropDisplay, variety,  data) {
+  if (!variety || !data) return
+  const schemaData = data.filter(({variety: v}) => v == variety)
   if (!schemaData.length) return
   if (cropDisplay == 'anchor-week') return REPORT_TYPE['cropsByWeekAnchor'](schemaData)
   if (cropDisplay == 'anchor-day') return REPORT_TYPE['cropsByDayAnchor'](schemaData)
@@ -66,7 +66,7 @@ const REPORT_TYPE = {
   cropsByWeekAnchor(data) {
     let min = Infinity, max = 0, inRange = [];
     data.forEach(row => {
-      if (!row.crop) return
+      if (!row.varieties) return
       if (row.anchor_week_year < min) min = row.anchor_week_year
       if (row.anchor_week_year > max) max = row.anchor_week_year
       if (!inRange.includes(row.anchor_week_year)) inRange.push(row.anchor_week_year)
@@ -165,7 +165,7 @@ const REPORT_TYPE = {
 
       let min = Infinity, max = 0, inRange = [];
       data.forEach(row => {
-        if (!row.crop) return
+        if (!row.varieties) return
         if (row.estimated_harvest_week_year < min) min = row.estimated_harvest_week_year
         if (row.estimated_harvest_week_year > max) max = row.estimated_harvest_week_year
         if (!inRange.includes(row.estimated_harvest_week_year)) inRange.push(row.estimated_harvest_week_year)
