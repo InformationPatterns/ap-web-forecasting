@@ -2,14 +2,14 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 export default function useGreenhouseVarieties(greenhouse) {
-  const { data = {}, loading } = useQuery(GET_BLOCK_VARIETIES, {
+  const { data = {}, loading } = useQuery(GET_GREENHOUSE_VARIETIES, {
     variables: {greenhouse},
     skip: !greenhouse
   })
   return {loading, data: data.GreenhouseVarieties}
 }
 
-const GET_BLOCK_VARIETIES = gql`
+const GET_GREENHOUSE_VARIETIES = gql`
   query GreenhouseVarieties($greenhouse: String!) {
     GreenhouseVarieties(greenhouse: $greenhouse) {
       id

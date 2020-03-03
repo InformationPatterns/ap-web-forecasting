@@ -1,7 +1,7 @@
 import {useMemo} from 'react'
 import {AppState} from 'ap-web-general'
-import useGreenhouseVarieties from '../../../states/useGreenhouseVarieties'
-import useVarieties from '../../../states/useVarieties'
+import useGreenhouseVarieties from '../../../apollo/useGreenhouseVarieties'
+import useVarieties from '../../../apollo/useVarieties'
 
 export default function useActualGreenhouse(greenhouse) {
   const {moment} = AppState.useContainer()

@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import { Empty } from 'antd';
-import Loading from './Loading'
+import {Loading} from 'ap-web-general'
 
 /*global vegaEmbed */
 export default function Vega(props) {

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import useGreenhouse from '../../states/useGreenhouse'
-import useActualGreenhouse from './states/useActualGreenhouse'
+import {Select, DataSelectView, CenterView} from 'ap-web-general'
+import useGreenhouse from '../../apollo/useGreenhouse'
+import SelectGreenhouse from '../components/SelectGreenhouse'
 import Vega from '../components/Vega'
-import {DataSelectView, CenterView} from '../components/Views'
-import Select from '../components/Select'
-import SelectBlocks from '../components/SelectBlocks'
+import useActualGreenhouse from './states/useActualGreenhouse'
+
 
 
 export default function ActualBlock() {
@@ -33,7 +33,7 @@ export default function ActualBlock() {
   return (
     <div style={{flex: 1}}>
       <DataSelectView>
-        <SelectBlocks value={block} onChange={setBlock} />
+        <SelectGreenhouse value={block} onChange={setBlock} />
         <Select data={crops} value={crop} onChange={setCrop} style={{marginLeft: 10, width: 260}}/>
       </DataSelectView>
       <CenterView>
