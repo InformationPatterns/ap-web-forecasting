@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {Select, DataSelectView, CenterView} from 'ap-web-general'
+import {UI} from 'ap-web-general'
+const {Select, DataSelectView, CenterView} = UI
 import SelectGreenhouse from '../components/SelectGreenhouse'
 import Vega from '../components/Vega'
 import useActualGreenhouse from './states/useActualGreenhouse'

@@ -1,11 +1,11 @@
 import React, {useRef, useEffect} from 'react';
 import { Empty } from 'antd';
-import {Loading} from 'ap-web-general'
+import {UI} from 'ap-web-general'
 
 /*global vegaEmbed */
 export default function Vega(props) {
   let {loading, schema} = props
-  if (loading) return <Loading />
+  if (loading) return <UI.Loading />
   if (schema) return <VegaDiv {...props} />
   return <Empty />
 }

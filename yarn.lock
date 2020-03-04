@@ -1804,7 +1804,7 @@ anymatch@^2.0.0:
 
 "ap-web-general@https://github.com/InformationPatterns/ap-web-general":
   version "1.0.0"
-  resolved "https://github.com/InformationPatterns/ap-web-general#f04bc0e6d9396dd24463b5a873fd029621a70221"
+  resolved "https://github.com/InformationPatterns/ap-web-general#5f5a38ad9d46b6534889be9ceaedf8be9d14a4ea"
   dependencies:
     "@apollo/react-hooks" "3.0.0"
     antd "^4.0.0"
