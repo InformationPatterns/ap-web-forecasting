@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {AppState, UI} from 'ap-web-general'
+import {AppState, UI, ApolloHooks} from 'ap-web-general'
 const {Select, DataSelectView, CenterView} = UI
-import useGreenhouse from '../../apollo/useGreenhouse'
 import SelectGreenhouse from '../components/SelectGreenhouse'
 import Vega from '../components/Vega'
 import useActualGreenhouse from './states/useActualGreenhouse'
@@ -13,7 +12,7 @@ export default function ActualBlock() {
   , ALL_VARIETIES = 'All Varieties'
   , [variety, setVariety] = useState(ALL_VARIETIES)
   , [cropDisplay, setCropDisplay] = useState('date')
-  , {loading: blockLoading, data: blockData} = useGreenhouse(greenhouse)
+  , {loading: blockLoading, data: blockData} = ApolloHooks.useGreenhouse(greenhouse)
   , {loading: planLoading, data} = useActualGreenhouse(greenhouse)
   , loading = blockLoading || planLoading || !greenhouse
   let schema, crops = [{value: ALL_VARIETIES}], cropDisplays = [
