@@ -6,8 +6,6 @@ import ActualBlock from '../actual/block'
 import ActualBar from '../actual/bar'
 import ActualLot from '../actual/lot'
 
-
-/* eslint-disable react/display-name */
 export default buildRouter({
   routes: {
     '/actual/block': () => <ActualBlock />,
@@ -18,4 +16,3 @@ export default buildRouter({
   navbar: (modules) => <Navbar modules={modules} />,
   sidbar: () => <Sidbar />
 })
-/* eslint-enable react/display-name */

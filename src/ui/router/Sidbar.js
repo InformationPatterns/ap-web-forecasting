@@ -2,9 +2,10 @@ import React from 'react'
 import { Menu, Layout } from 'antd';
 import {getWorkingPath} from 'hookrouter';
 import {A} from 'hookrouter';
+import {AppState} from 'ap-web-general'
 const { Sider } = Layout
 const { SubMenu } = Menu;
-import {AppState} from 'ap-web-general'
+
 
 export default function Navbar() {
   const {t} = AppState.useContainer()
