@@ -16,6 +16,6 @@ export function VegaDiv(props) {
   , schema = JSON.parse(JSON.stringify(props.schema))
   useEffect(() => {
     vegaEmbed(vega.current, schema)
-  }, [props.schema])
+  }, [schema])
   return <div id="vegaRef" ref={vega} />
 }

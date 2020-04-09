@@ -39,6 +39,6 @@ export default function useActualGreenhouse(greenhouse) {
         // lot_day: square.lot.day,
       }
     })
-  }, [loadingV, loadingGV, greenhouse])
+  }, [data, moment, varieties])
   return {loading, data: finalData}
 }

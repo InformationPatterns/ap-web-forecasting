@@ -43,8 +43,8 @@ export default function ActualBlock() {
 }
 
 function getReportType(crop, cropDisplay, block, data, ALL_CROPS) {
-  if (crop == ALL_CROPS) return REPORT_TYPE['report'](block, data)
-  let schemaData = data.filter(({crop: c}) => c == crop)
+  if (crop === ALL_CROPS) return REPORT_TYPE['report'](block, data)
+  let schemaData = data.filter(({crop: c}) => c === crop)
   return REPORT_TYPE['report'](block, schemaData)
 }
 

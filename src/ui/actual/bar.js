@@ -52,12 +52,12 @@ export default function ActualBlock() {
 
 function getReportType(cropDisplay, variety,  data) {
   if (!variety || !data) return
-  const schemaData = data.filter(({variety: v}) => v == variety)
+  const schemaData = data.filter(({variety: v}) => v === variety)
   if (!schemaData.length) return
-  if (cropDisplay == 'anchor-week') return REPORT_TYPE['cropsByWeekAnchor'](schemaData)
-  if (cropDisplay == 'anchor-day') return REPORT_TYPE['cropsByDayAnchor'](schemaData)
-  if (cropDisplay == 'harvest-week') return REPORT_TYPE['cropsByWeekHarvest'](schemaData)
-  if (cropDisplay == 'harvest-day') return REPORT_TYPE['cropsByDayHarvest'](schemaData)
+  if (cropDisplay === 'anchor-week') return REPORT_TYPE['cropsByWeekAnchor'](schemaData)
+  if (cropDisplay === 'anchor-day') return REPORT_TYPE['cropsByDayAnchor'](schemaData)
+  if (cropDisplay === 'harvest-week') return REPORT_TYPE['cropsByWeekHarvest'](schemaData)
+  if (cropDisplay === 'harvest-day') return REPORT_TYPE['cropsByDayHarvest'](schemaData)
   return
 }
 

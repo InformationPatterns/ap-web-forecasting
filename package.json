@@ -28,9 +28,6 @@
     "deploy-staging": "REACT_APP_NODE_ENV=staging react-app-rewired build && aws s3 sync build/ s3://forecasting-staging-agropatterns-com",
     "deploy-production": "REACT_APP_NODE_ENV=production react-app-rewired build && aws s3 sync build/ s3://forecasting-agropatterns-com"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -37,7 +37,7 @@ export default function ActualBlock() {
       <DataSelectView>
         <SelectGreenhouse value={greenhouse} onChange={setGreenhouse} />
         <Select data={crops} value={variety} onChange={setVariety} style={{marginLeft: 10, width: 260}}/>
-        {variety != ALL_VARIETIES ?
+        {variety !== ALL_VARIETIES ?
           <Select data={cropDisplays} value={cropDisplay} onChange={setCropDisplay}
             style={{marginLeft: 10, width: 140}}/>
         : null}
@@ -50,12 +50,12 @@ export default function ActualBlock() {
 }
 
 function getReportType(variety, cropDisplay, block, data, ALL_CROPS, t) {
-  if (variety == ALL_CROPS) return REPORT_TYPE['allCrops'](block, data, t)
+  if (variety === ALL_CROPS) return REPORT_TYPE['allCrops'](block, data, t)
   else {
-    let schemaData = data.filter(({variety: v}) => v == variety)
-    if (cropDisplay == 'date') return REPORT_TYPE['cropsByDate'](variety, block, schemaData, t)
-    if (cropDisplay == 'week') return REPORT_TYPE['cropsByWeek'](variety, block, schemaData, t)
-    if (cropDisplay == 'day') return REPORT_TYPE['cropsByDay'](variety, block, schemaData, t)
+    let schemaData = data.filter(({variety: v}) => v === variety)
+    if (cropDisplay === 'date') return REPORT_TYPE['cropsByDate'](variety, block, schemaData, t)
+    if (cropDisplay === 'week') return REPORT_TYPE['cropsByWeek'](variety, block, schemaData, t)
+    if (cropDisplay === 'day') return REPORT_TYPE['cropsByDay'](variety, block, schemaData, t)
   }
   return undefined
 }
