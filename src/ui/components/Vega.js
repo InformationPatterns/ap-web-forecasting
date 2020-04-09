@@ -13,7 +13,7 @@ export default function Vega(props) {
 
 export function VegaDiv(props) {
   const vega = useRef(null)
-  , schema = JSON.parse(JSON.stringify(props.schema))
+    , schema = JSON.parse(JSON.stringify(props.schema))
   useEffect(() => {
     vegaEmbed(vega.current, schema)
   }, [schema])

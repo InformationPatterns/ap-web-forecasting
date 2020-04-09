@@ -3,9 +3,9 @@ import {AppState, ApolloHooks} from 'ap-web-general'
 
 export default function useActualGreenhouse(greenhouse) {
   const {moment} = AppState.useContainer()
-  , {loading: loadingGV, data} = ApolloHooks.useGreenhouseVarieties(greenhouse)
-  , {loading: loadingV, data: varieties} = ApolloHooks.useVarieties()
-  , loading = loadingV && loadingGV
+    , {loading: loadingGV, data} = ApolloHooks.useGreenhouseVarieties(greenhouse)
+    , {loading: loadingV, data: varieties} = ApolloHooks.useVarieties()
+    , loading = loadingV && loadingGV
   let finalData = useMemo(() => {
     if (!data) return
     const varietiesHash = varieties.reduce((memo, i) => {

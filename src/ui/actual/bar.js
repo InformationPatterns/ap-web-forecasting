@@ -7,10 +7,10 @@ const {Select, DataSelectView, CenterView} = UI
 
 export default function ActualBlock() {
   const [greenhouse, setGreenhouse] = useState('')
-  , [variety, setVariety] = useState('')
-  , [crops, setCrops] = useState([])
-  , [cropDisplay, setCropDisplay] = useState('anchor-week')
-  , {loading, data} = useActualGreenhouse(greenhouse)
+    , [variety, setVariety] = useState('')
+    , [crops, setCrops] = useState([])
+    , [cropDisplay, setCropDisplay] = useState('anchor-week')
+    , {loading, data} = useActualGreenhouse(greenhouse)
   let schema, cropDisplays = [
     {value: "anchor-week", label: "Anchor Week"},
     {value: "anchor-day", label: "Anchor Day"},
@@ -71,7 +71,7 @@ const REPORT_TYPE = {
       if (!inRange.includes(row.anchor_week_year)) inRange.push(row.anchor_week_year)
     })
     let values = [...data]
-    , range = Array.from({length: max-min+1}, (v, k) => k+min)
+      , range = Array.from({length: max-min+1}, (v, k) => k+min)
     range.forEach(r => {
       if (!inRange.includes(r)) {
         values.push({
@@ -80,7 +80,7 @@ const REPORT_TYPE = {
       }
     })
     return {
-     mark: "bar",
+      mark: "bar",
       data: {values},
       transform: [
         {"calculate": "datum.lot_display || 'n/a'", "as": "lot_display2"}
@@ -121,7 +121,7 @@ const REPORT_TYPE = {
   },
   cropsByDayAnchor(data) {
     return {
-     mark: "bar",
+      mark: "bar",
       data: {
         values: data,
         "format": {
@@ -161,25 +161,24 @@ const REPORT_TYPE = {
     }
   },
   cropsByWeekHarvest(data) {
-
-      let min = Infinity, max = 0, inRange = [];
-      data.forEach(row => {
-        if (!row.varieties) return
-        if (row.estimated_harvest_week_year < min) min = row.estimated_harvest_week_year
-        if (row.estimated_harvest_week_year > max) max = row.estimated_harvest_week_year
-        if (!inRange.includes(row.estimated_harvest_week_year)) inRange.push(row.estimated_harvest_week_year)
-      })
-      let values = [...data]
+    let min = Infinity, max = 0, inRange = [];
+    data.forEach(row => {
+      if (!row.varieties) return
+      if (row.estimated_harvest_week_year < min) min = row.estimated_harvest_week_year
+      if (row.estimated_harvest_week_year > max) max = row.estimated_harvest_week_year
+      if (!inRange.includes(row.estimated_harvest_week_year)) inRange.push(row.estimated_harvest_week_year)
+    })
+    let values = [...data]
       , range = Array.from({length: max-min+1}, (v, k) => k+min)
-      range.forEach(r => {
-        if (!inRange.includes(r)) {
-          values.push({
-            estimated_harvest_week_year: r
-          })
-        }
-      })
+    range.forEach(r => {
+      if (!inRange.includes(r)) {
+        values.push({
+          estimated_harvest_week_year: r
+        })
+      }
+    })
     return {
-     mark: "bar",
+      mark: "bar",
       data: {values},
       transform: [
         {"calculate": "datum.lot_display || 'n/a'", "as": "lot_display2"}
@@ -220,7 +219,7 @@ const REPORT_TYPE = {
   },
   cropsByDayHarvest(data) {
     return {
-     mark: "bar",
+      mark: "bar",
       data: {
         values: data,
         "format": {

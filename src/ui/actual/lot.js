@@ -8,12 +8,12 @@ const {Select, DataSelectView, CenterView} = UI
 
 export default function ActualBlock() {
   const [block, setBlock] = useState('')
-  , ALL_CROPS = 'All Crops'
-  , [crop, setCrop] = useState(ALL_CROPS)
-  , [cropDisplay, setCropDisplay] = useState('date')
-  , {loading: blockLoading, data: blockData} = ApolloHooks.useGreenhouse(block)
-  , {loading: planLoading, data} = useActualGreenhouse(block)
-  , loading = blockLoading || planLoading || !block
+    , ALL_CROPS = 'All Crops'
+    , [crop, setCrop] = useState(ALL_CROPS)
+    , [cropDisplay, setCropDisplay] = useState('date')
+    , {loading: blockLoading, data: blockData} = ApolloHooks.useGreenhouse(block)
+    , {loading: planLoading, data} = useActualGreenhouse(block)
+    , loading = blockLoading || planLoading || !block
   let schema, crops = [{value: ALL_CROPS}]
 
   useEffect(() => {

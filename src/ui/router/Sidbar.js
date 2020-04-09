@@ -9,11 +9,11 @@ const { SubMenu } = Menu;
 
 export default function Navbar() {
   const {t} = AppState.useContainer()
-  , path = getWorkingPath().split('/')
-  , parent = `/${path[1]}/${path[2]}`
-  , child = `/${path[1]}/${path[2]}/${path[3]}`
-  , subChild = `/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
-  , location = [parent, child, subChild]
+    , path = getWorkingPath().split('/')
+    , parent = `/${path[1]}/${path[2]}`
+    , child = `/${path[1]}/${path[2]}/${path[3]}`
+    , subChild = `/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
+    , location = [parent, child, subChild]
   if (!ROUTES[path[1]]) return null
   let ui = ROUTES[path[1]](t)
   return <Sider>

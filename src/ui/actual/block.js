@@ -7,13 +7,13 @@ const {Select, DataSelectView, CenterView} = UI
 
 export default function ActualBlock() {
   const {t} = AppState.useContainer()
-  , [greenhouse, setGreenhouse] = useState('')
-  , ALL_VARIETIES = 'All Varieties'
-  , [variety, setVariety] = useState(ALL_VARIETIES)
-  , [cropDisplay, setCropDisplay] = useState('date')
-  , {loading: blockLoading, data: blockData} = ApolloHooks.useGreenhouse(greenhouse)
-  , {loading: planLoading, data} = useActualGreenhouse(greenhouse)
-  , loading = blockLoading || planLoading || !greenhouse
+    , [greenhouse, setGreenhouse] = useState('')
+    , ALL_VARIETIES = 'All Varieties'
+    , [variety, setVariety] = useState(ALL_VARIETIES)
+    , [cropDisplay, setCropDisplay] = useState('date')
+    , {loading: blockLoading, data: blockData} = ApolloHooks.useGreenhouse(greenhouse)
+    , {loading: planLoading, data} = useActualGreenhouse(greenhouse)
+    , loading = blockLoading || planLoading || !greenhouse
   let schema, crops = [{value: ALL_VARIETIES}], cropDisplays = [
     {value: "date", label: t`Anchor`},
     {value: "week", label: t`Age - Week`},
@@ -40,7 +40,8 @@ export default function ActualBlock() {
         {variety !== ALL_VARIETIES ?
           <Select data={cropDisplays} value={cropDisplay} onChange={setCropDisplay}
             style={{marginLeft: 10, width: 140}}/>
-        : null}
+          : null
+        }
       </DataSelectView>
       <CenterView>
         <Vega schema={schema} loading={loading} />
